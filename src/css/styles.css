@@ -21,11 +21,28 @@
 
 .gallery-item {
   width: calc((100% - 2 * 24px) / 3);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .gallery-image {
   width: 360px;
   height: 200px;
+}
+
+.gallery-image-info {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+.image-items-text {
+  font-family: Georgia, serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 133%;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
 }
 
 .loader {
