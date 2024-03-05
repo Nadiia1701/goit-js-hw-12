@@ -1,0 +1,12 @@
+import{i as u,S as f}from"./assets/vendor-7659544d.js";(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const s of t)if(s.type==="childList")for(const a of s.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&i(a)}).observe(document,{childList:!0,subtree:!0});function r(t){const s={};return t.integrity&&(s.integrity=t.integrity),t.referrerPolicy&&(s.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?s.credentials="include":t.crossOrigin==="anonymous"?s.credentials="omit":s.credentials="same-origin",s}function i(t){if(t.ep)return;t.ep=!0;const s=r(t);fetch(t.href,s)}})();const p="42569915-bcd29008899db620988a57306",d="https://pixabay.com/api/",n=document.querySelector(".loader");function g(o){const e=new URLSearchParams({key:p,q:o,image_type:"photo",orientation:"horizontal",safesearch:!0});return n.style.display="block",fetch(`${d}?${e}`).then(r=>{if(!r.ok)throw new Error("Network response was not OK!");return r.json()}).then(r=>(n.style.display="none",r.hits.length===0&&u.error({fontSize:"large",close:!1,position:"topRight",messageColor:"white",timeout:2e3,backgroundColor:"red",message:"Sorry, there are no images matching your search query. Please try again!"}),r)).catch(r=>console.error("Error fetching data:",r))}function h(o){return o.hits.map(e=>`<div class="gallery-item">
+      <a class="gallery-link" href="${e.largeImageURL}">
+          <img class="gallery-image" src="${e.webformatURL}" alt="${e.tags}">
+      </a>
+      <div class="gallery-image-info">
+          <p class="image-info-item"><span class="image-items-text">Likes: </span>${e.likes}</p>
+          <p class="image-info-item"><span class="image-items-text">Views: </span>${e.views}</p>
+          <p class="image-info-item"><span class="image-items-text">Comments: </span>${e.comments}</p>
+          <p class="image-info-item"><span class="image-items-text">Downloads: </span>${e.downloads}</p>
+      </div>
+  </div>`).join("")}const y=new f(".gallery-link",{captionsData:"alt",captionDelay:250}),m=document.querySelector("#searchForm"),c=document.querySelector(".gallery");let l="";m.addEventListener("submit",b);function b(o){o.preventDefault(),c.innerHTML="",l=m.elements.searchQuery.value.trim(),g(l).then(e=>{const r=h(e);c.insertAdjacentHTML("beforeend",r),y.refresh()}).catch(e=>console.error("Error fetching data:",e))}
+//# sourceMappingURL=commonHelpers.js.map
